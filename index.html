@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WA CELL | Assistência Técnica Especializada</title>
+    
+    <!-- Fontes e Ícones -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-body: #020617;
+            --bg-card: #0b122f;
+            --primary: #00b4ff;
+            --primary-dark: #008fcc;
+            --text-main: #ffffff;
+            --text-dim: #94a3b8;
+            --whatsapp: #25D366;
+            --ai-chat-bg: #1e293b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 6%;
+            position: sticky;
+            top: 0;
+            background: rgba(2, 6, 23, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 22px;
+            color: var(--primary);
+        }
+
+        .btn-top-orcamento {
+            background: var(--primary);
+            color: #000;
+            padding: 8px 18px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 40px 6%;
+            text-align: center;
+        }
+
+        .badge-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.05);
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--text-dim);
+            margin-bottom: 25px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .dot { height: 8px; width: 8px; border-radius: 50%; }
+        .dot.open { background: #22c55e; box-shadow: 0 0 8px #22c55e; }
+        .dot.closed { background: #ef4444; }
+
+        .hero h1 {
+            font-size: 38px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+            display: block;
+        }
+
+        .hero p {
+            color: var(--text-dim);
+            font-size: 15px;
+            max-width: 500px;
+            margin: 0 auto 30px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .btn-main {
+            padding: 16px;
+            border-radius: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: 0.3s;
+        }
+
+        .btn-whatsapp { background: var(--primary); color: #000; }
+        .btn-ai { border: 1px solid rgba(255,255,255,0.1); color: #fff; background: rgba(255,255,255,0.03); }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 40px 6%;
+            text-align: center;
+        }
+
+        .stat-item h3 { font-size: 28px; font-weight: 800; color: #fff; }
+        .stat-item p { font-size: 10px; color: var(--text-dim); font-weight: 700; text-transform: uppercase; margin-top: 4px; }
+
+        /* Serviços */
+        .section-title {
+            text-align: center;
+            padding: 20px 6% 0;
+        }
+
+        .section-title h2 { font-size: 28px; margin-bottom: 8px; }
+        .underline { width: 60px; height: 4px; background: var(--primary); margin: 0 auto 15px; border-radius: 2px; }
+
+        .services-container {
+            padding: 20px 6%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            padding: 24px;
+            border-radius: 24px;
+            border: 1px solid rgba(255,255,255,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 180, 255, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        .service-card h4 { font-size: 20px; margin-bottom: 10px; }
+        .service-card p { color: var(--text-dim); font-size: 14px; margin-bottom: 20px; }
+        
+        .solicitar-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* AI CHAT */
+        .chat-window {
+            background: var(--bg-card);
+            border-radius: 24px;
+            border: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            flex-direction: column;
+            height: 450px;
+            margin: 0 6% 40px;
+        }
+
+        .chat-header {
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .bot-avatar {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-size: 20px;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .msg { max-width: 85%; padding: 12px 16px; border-radius: 15px; font-size: 14px; }
+        .msg.bot { background: #1e293b; align-self: flex-start; border-bottom-left-radius: 2px; }
+        .msg.user { background: var(--primary); color: #000; align-self: flex-end; border-bottom-right-radius: 2px; font-weight: 600; }
+
+        .chat-input-area {
+            padding: 15px;
+            display: flex;
+            gap: 10px;
+            background: rgba(0,0,0,0.2);
+            border-bottom-left-radius: 24px;
+            border-bottom-right-radius: 24px;
+        }
+
+        .chat-input-area input {
+            flex: 1;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 12px 15px;
+            border-radius: 12px;
+            color: #fff;
+            outline: none;
+        }
+
+        .btn-send {
+            background: var(--whatsapp);
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 6%;
+            background: #010413;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .contact-info { margin-top: 30px; display: flex; flex-direction: column; gap: 15px; }
+        .contact-item { display: flex; align-items: center; gap: 15px; color: var(--text-dim); font-size: 14px; }
+        .contact-item i { color: var(--primary); width: 20px; }
+
+        .map-placeholder {
+            margin-top: 30px;
+            background: var(--bg-card);
+            height: 150px;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            border: 1px solid rgba(255,255,255,0.05);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .map-placeholder:hover {
+            background: rgba(255,255,255,0.05);
+            border-color: var(--primary);
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--whatsapp);
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: white;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            z-index: 999;
+        }
+
+        @media (min-width: 768px) {
+            .services-container { grid-template-columns: 1fr 1fr; display: grid; }
+            .hero h1 { font-size: 56px; }
+            .cta-buttons { flex-direction: row; justify-content: center; }
+            .btn-main { min-width: 250px; }
+            .chat-window { max-width: 700px; margin: 0 auto 40px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo"><i class="fas fa-mobile-alt"></i> WA CELL</div>
+    <a href="https://wa.me/5522981651858" class="btn-top-orcamento">Orçamento</a>
+</header>
+
+<section class="hero">
+    <div class="badge-status" id="statusBadge">
+        <span class="dot" id="statusDot"></span> <span id="statusText">VERIFICANDO HORÁRIO...</span>
+    </div>
+    <h1>Assistência Especializada <span>Conserto na Hora</span></h1>
+    <p>Há mais de 12 anos oferecendo soluções rápidas e confiáveis para o seu smartphone. Qualidade premium no coração de Cabo Frio.</p>
+    
+    <div class="cta-buttons">
+        <a href="https://wa.me/5522981651858" class="btn-main btn-whatsapp">
+            <i class="fab fa-whatsapp"></i> Falar no WhatsApp
+        </a>
+        <a href="#diagnostico" class="btn-main btn-ai">
+            Diagnóstico com IA
+        </a>
+    </div>
+</section>
+
+<div class="stats-grid">
+    <div class="stat-item"><h3>12+</h3><p>Anos de experiência</p></div>
+    <div class="stat-item"><h3>50k+</h3><p>Aparelhos reparados</p></div>
+    <div class="stat-item"><h3>90d</h3><p>Garantia total</p></div>
+    <div class="stat-item"><h3>1h</h3><p>Prazo médio</p></div>
+</div>
+
+<section class="section-title">
+    <h2>Nossos Serviços</h2>
+    <div class="underline"></div>
+</section>
+
+<section class="services-container">
+    <div class="service-card">
+        <div class="service-icon"><i class="fas fa-mobile-screen"></i></div>
+        <h4>Troca de Tela</h4>
+        <p>Substituição rápida com displays de alta qualidade para todas as marcas.</p>
+        <a href="https://wa.me/5522981651858" class="solicitar-link">Solicitar orçamento <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+    <div class="service-card">
+        <div class="service-icon"><i class="fas fa-bolt"></i></div>
+        <h4>Conector de Carga</h4>
+        <p>Reparo especializado em portas USB-C e Lightning que pararam de funcionar.</p>
+        <a href="https://wa.me/5522981651858" class="solicitar-link">Solicitar orçamento <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+    <div class="service-card">
+        <div class="service-icon"><i class="fas fa-microchip"></i></div>
+        <h4>Reparo em Placa</h4>
+        <p>Manutenção avançada em circuitos, recuperação de aparelhos molhados e curtos.</p>
+        <a href="https://wa.me/5522981651858" class="solicitar-link">Solicitar orçamento <i class="fas fa-arrow-right"></i></a>
+    </div>
+</section>
+
+<section id="diagnostico">
+    <div style="text-align: center; margin-bottom: 25px;">
+        <span style="color: var(--primary); font-size: 12px; font-weight: 800; text-transform: uppercase;">Inovação</span>
+        <h2 style="font-size: 28px;">Diagnóstico Inteligente</h2>
+    </div>
+
+    <div class="chat-window">
+        <div class="chat-header">
+            <div class="bot-avatar"><i class="fas fa-robot"></i></div>
+            <div>
+                <div style="font-weight: 700; font-size: 14px;">Assistente WA CELL</div>
+                <div style="font-size: 11px; color: #22c55e;">Online • Pronto para ajudar</div>
+            </div>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="msg bot">Olá! Sou o assistente da WA CELL. Qual problema seu celular está apresentando hoje? Posso te ajudar a identificar a causa!</div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" id="userInput" placeholder="Descreva o defeito (ex: não carrega)...">
+            <button class="btn-send" onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="logo"><i class="fas fa-mobile-alt"></i> WA CELL</div>
+    <p style="color: var(--text-dim); font-size: 14px; margin-top: 10px;">Excelência técnica em Cabo Frio há mais de uma década.</p>
+    
+    <div class="contact-info">
+        <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>Centro, Cabo Frio - RJ</div>
+        </div>
+        <div class="contact-item">
+            <i class="fas fa-phone-alt"></i>
+            <div>(22) 98165-1858</div>
+        </div>
+        <div class="contact-item">
+            <i class="fas fa-clock"></i>
+            <div><b>Seg - Sáb: 08h às 19h</b></div>
+        </div>
+    </div>
+
+    <!-- LINK DO MAPA ATUALIZADO ABAIXO -->
+    <a href="https://www.google.com/maps/search/?api=1&query=WA+CELL+Rua+Rosalina+Cardoso+da+Fonseca+349+Cabo+Frio" target="_blank" class="map-placeholder">
+        <i class="fas fa-map-marked-alt" style="font-size: 30px; color: var(--text-dim);"></i>
+        <span style="color: var(--primary); font-weight: 700; font-size: 12px;">VER NO GOOGLE MAPS</span>
+    </a>
+
+    <p style="text-align: center; color: var(--text-dim); font-size: 10px; margin-top: 40px;">
+        © 2024 WA CELL Assistência Técnica. Todos os direitos reservados.
+    </p>
+</footer>
+
+<a href="https://wa.me/5522981651858" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
+
+<script>
+    // Lógica do Horário de Funcionamento (Segunda a Sábado 8h-19h)
+    function checkStatus() {
+        const now = new Date();
+        const day = now.getDay(); 
+        const hour = now.getHours();
+        const dot = document.getElementById('statusDot');
+        const text = document.getElementById('statusText');
+
+        if (day >= 1 && day <= 6 && hour >= 8 && hour < 19) {
+            dot.className = 'dot open';
+            text.innerText = 'ABERTO AGORA EM CABO FRIO';
+        } else {
+            dot.className = 'dot closed';
+            text.innerText = 'FECHADO NO MOMENTO - ABRE ÀS 08H';
+        }
+    }
+
+    // Lógica do Chat
+    function sendMessage() {
+        const input = document.getElementById('userInput');
+        const container = document.getElementById('chatMessages');
+        const text = input.value.trim();
+        if (text === "") return;
+
+        const userMsg = document.createElement('div');
+        userMsg.className = 'msg user';
+        userMsg.textContent = text;
+        container.appendChild(userMsg);
+        input.value = "";
+        container.scrollTop = container.scrollHeight;
+
+        setTimeout(() => {
+            const botMsg = document.createElement('div');
+            botMsg.className = 'msg bot';
+            let response = "Interessante. Para esse problema, recomendo uma análise técnica. Posso agendar para você hoje?";
+            
+            const lowText = text.toLowerCase();
+            if(lowText.includes("tela") || lowText.includes("quebr")) response = "Troca de tela é nossa especialidade! Fazemos na hora. Qual o modelo do aparelho?";
+            else if(lowText.includes("água") || lowText.includes("molhou")) response = "URGENTE: Não ligue o aparelho! Traga agora para limpeza química e evitar curto-circuito.";
+            else if(lowText.includes("carga") || lowText.includes("carreg")) response = "Pode ser apenas sujeira no conector ou falha na peça. O conserto é bem rápido!";
+
+            botMsg.textContent = response;
+            container.appendChild(botMsg);
+            container.scrollTop = container.scrollHeight;
+        }, 800);
+    }
+
+    document.getElementById('userInput').addEventListener('keypress', (e) => { if(e.key === 'Enter') sendMessage(); });
+    checkStatus();
+</script>
+
+</body>
+</html>
